@@ -1,39 +1,16 @@
-(function () {
-
-'use strict';
-
-
-  angular.module('SampleApp', ['ngRoute', 'ngAnimate'])
-
-  .config([
-    '$locationProvider',
-    '$routeProvider',
-    function($locationProvider, $routeProvider) {
-      $locationProvider.hashPrefix('!');
-      // routes
-      $routeProvider
-        .when("/", {
-          templateUrl: "./partials/home.html",
-          controller: "MainController"
+JsApp = angular.module('JsApp', ['ui.router', 'controllers', 'ngAnimate']);
+controllers = angular.module('controllers', []);
+JsApp.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+    $urlRouterProvider.otherwise("/home");
+    $stateProvider
+        .state('home', {
+            url: "/home",
+            templateUrl: "./partials/home.html",
+            controller: "MainController"
         })
-        .when("/about", {
-          templateUrl: "./partials/about.html",
-          controller: "MainController"
-        })
-        .otherwise({
-           redirectTo: '/'
+        .state('about', {
+            url: '/about',
+            templateUrl: './partials/about.html',
+            controller: "MainController"
         });
-    }
-  ]);
-
-  //Load controller
-  angular.module('SampleApp')
-
-  .controller('MainController', [
-    '$scope',
-    function($scope) {
-      $scope.test = "Welcome...";
-    }
-  ]);
-
-}());
+}]);
