@@ -1,3 +1,4 @@
 controllers.controller('MainController', ['$scope',function($scope){
-  $scope.test = "Welcome...";
+  $scope.homeText = "Welcome to JsApp";
+  $scope.aboutMeText = "About me";
 }]);
